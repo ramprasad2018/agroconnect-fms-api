@@ -1,4 +1,4 @@
-package com.example.springboot_redisom_practice.config;
+package com.agroconnect.fms_api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
