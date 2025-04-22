@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
         description = "Spring Boot + PostgreSQL + Swagger in GitHub Codespaces"
     ),
     servers = {
-        @Server(
-            url = "https://silver-waffle-ppjjp59r4g52qw9-8080.app.github.dev",
-            description = "GitHub Codespaces Server"
-        )
+        @Server(url = "/", description = "Default Server"),
+        @Server(url = "http://localhost:8080", description = "Local Dev"),
+        @Server(url = "https://zany-space-potato-...github.dev", description = "Codespace")
     }
+
 )
 public class OpenAPIConfig {
 }
