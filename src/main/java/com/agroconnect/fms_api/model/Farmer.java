@@ -22,8 +22,9 @@ public class Farmer {
 
     private String phone;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String type;
+    private FarmerType type;
 
     private LocalDateTime createdAt;
 }

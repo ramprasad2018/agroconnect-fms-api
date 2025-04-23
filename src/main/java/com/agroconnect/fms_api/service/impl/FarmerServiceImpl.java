@@ -3,10 +3,10 @@ package com.agroconnect.fms_api.service.impl;
 import com.agroconnect.fms_api.dto.FarmerRequest;
 import com.agroconnect.fms_api.dto.FarmerResponse;
 import com.agroconnect.fms_api.model.Farmer;
+import com.agroconnect.fms_api.model.FarmerType;
 import com.agroconnect.fms_api.repository.FarmerRepository;
 import com.agroconnect.fms_api.service.FarmerService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,7 +27,7 @@ public class FarmerServiceImpl implements FarmerService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .type(request.getType())
+                .type(FarmerType.valueOf(request.getType()))
                 .createdAt(LocalDateTime.now())
                 .build();
         return toResponse(farmerRepository.save(farmer));
@@ -36,19 +36,19 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     public FarmerResponse getFarmerById(Integer id) {
         Farmer farmer = farmerRepository.findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Farmer not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Farmer not found"));
         return toResponse(farmer);
     }
-    
+
     @Override
     public FarmerResponse updateFarmer(Integer id, FarmerRequest request) {
         Farmer farmer = farmerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Farmer not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Farmer not found"));
 
         farmer.setName(request.getName());
         farmer.setEmail(request.getEmail());
         farmer.setPhone(request.getPhone());
-        farmer.setType(request.getType());
+        farmer.setType(FarmerType.valueOf(request.getType()));
 
         return toResponse(farmerRepository.save(farmer));
     }
@@ -71,7 +71,7 @@ public class FarmerServiceImpl implements FarmerService {
                 .name(farmer.getName())
                 .email(farmer.getEmail())
                 .phone(farmer.getPhone())
-                .type(farmer.getType())
+                .type(farmer.getType().name())
                 .build();
     }
 }
