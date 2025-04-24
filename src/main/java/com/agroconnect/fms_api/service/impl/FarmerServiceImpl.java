@@ -3,7 +3,6 @@ package com.agroconnect.fms_api.service.impl;
 import com.agroconnect.fms_api.dto.FarmerRequest;
 import com.agroconnect.fms_api.dto.FarmerResponse;
 import com.agroconnect.fms_api.model.Farmer;
-import com.agroconnect.fms_api.model.FarmerType;
 import com.agroconnect.fms_api.repository.FarmerRepository;
 import com.agroconnect.fms_api.service.FarmerService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class FarmerServiceImpl implements FarmerService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .type(FarmerType.valueOf(request.getType()))
+                .type(request.getType())
                 .createdAt(LocalDateTime.now())
                 .build();
         return toResponse(farmerRepository.save(farmer));
@@ -48,7 +47,7 @@ public class FarmerServiceImpl implements FarmerService {
         farmer.setName(request.getName());
         farmer.setEmail(request.getEmail());
         farmer.setPhone(request.getPhone());
-        farmer.setType(FarmerType.valueOf(request.getType()));
+        farmer.setType(request.getType()); //
 
         return toResponse(farmerRepository.save(farmer));
     }
@@ -71,7 +70,7 @@ public class FarmerServiceImpl implements FarmerService {
                 .name(farmer.getName())
                 .email(farmer.getEmail())
                 .phone(farmer.getPhone())
-                .type(farmer.getType().name())
+                .type(farmer.getType())
                 .build();
     }
 }

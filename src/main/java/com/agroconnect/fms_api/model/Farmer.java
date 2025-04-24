@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Table(name = "farmer", schema = "fms")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Farmer {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,9 +21,8 @@ public class Farmer {
 
     private String phone;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private FarmerType type;
+    private String type;
 
     private LocalDateTime createdAt;
 }

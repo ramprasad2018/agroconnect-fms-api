@@ -15,10 +15,10 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOriginPatterns("*") // ✅ Works better for dynamic domains like Codespaces
+                        .allowedOriginPatterns("*") // Better than allowedOrigins("*") in newer Spring versions
                         .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowCredentials(false); // Optional: set to true if using cookies/tokens
+                        .allowCredentials(false); // Change to true if needed for cookie/token auth
             }
         };
     }
