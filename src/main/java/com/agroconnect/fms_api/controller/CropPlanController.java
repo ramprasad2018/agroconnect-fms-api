@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+// Crop Planning Controller
+// This controller handles all the endpoints related to crop planning
+// It allows users to create, read, update, and delete crop plans
+// The endpoints are defined using Spring's @RestController and @RequestMapping annotations
 @RestController
 @RequestMapping("/api/crop-plans")
 public class CropPlanController {
